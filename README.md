@@ -1,0 +1,2 @@
+# FPGA-Based-Driver-Drowsiness-Detection-using-BNN-Kiwi-1P5-Sonix-MCU
+This project implements a real-time driver drowsiness detection system using a Binary Neural Network (BNN) on a Kiwi GW1N-1P5 FPGA. A Sonix MCU captures and preprocesses images using Otsu thresholding for adaptive binarization. The processed data is sent to the FPGA for low-latency, hardware-accelerated inference with optimized resource usage.
