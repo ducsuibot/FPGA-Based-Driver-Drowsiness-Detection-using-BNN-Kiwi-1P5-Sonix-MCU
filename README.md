@@ -7,7 +7,7 @@ The project is divided into two primary technical tracks: Pre-processing (MCU) a
 
 | Functional Group | Members | Key Responsibilities |
 | :--- | :--- | :--- |
-| **MCU & Pre-processing** | **Hoàng Văn Thái (Leader)**<br>**Vũ Văn Việt** | • Develop UART communication to receive image data from PC.<br>• Implement **OTSU Algorithm** for adaptive image thresholding.<br>• Build the **SPI Master** protocol to stream processed data to the FPGA. |
+| **MCU & Pre-processing** | **Hoàng Văn Thái (Leader)**<br>**Tạ Văn Việt** | • Develop UART communication to receive image data from PC.<br>• Implement **OTSU Algorithm** for adaptive image thresholding.<br>• Build the **SPI Master** protocol to stream processed data to the FPGA. |
 | **FPGA & BNN Inference** | **Nguyễn Minh Đức**<br>**Quang Bách** | • Design the **Binary Neural Network (BNN)** architecture on FPGA Kiwi 1P5.<br>• Develop optimized **Line Buffers** and Datapath (XNOR-Popcount).<br>• Design FSM-based controllers and verify bit-accurate inference. |
 
 ---
