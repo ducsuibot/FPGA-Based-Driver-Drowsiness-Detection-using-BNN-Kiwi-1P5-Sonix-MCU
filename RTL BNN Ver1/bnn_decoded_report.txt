@@ -2,7 +2,7 @@
 Tổng số từ: 2580 words (Chuẩn: 16 + 256 + 2304 + 4 = 2580)
 ===========================================================
 
-
+ 
 --- LỚP CONV1 (16 Filters x 9-bit) ---
 Addr 0    | Hex: 8005FE6B | Flt: 0  | Pol: 1 | Thresh: 5     | W_9b: 001101011
 Addr 1    | Hex: 8005FF26 | Flt: 1  | Pol: 1 | Thresh: 5     | W_9b: 100100110
