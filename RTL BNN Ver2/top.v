@@ -11,7 +11,7 @@ module top (
     output wire done         
 );
 
-    wire w_busy, w_result;
+    wire w_result;
     
     // [THÊM MỚI]: Nối tín hiệu kết quả từ bên trong chip ra ngoài chân vật lý
     assign result = w_result;
@@ -66,7 +66,6 @@ module top (
         .rx_data    (spi_data), 
         .rx_addr    (spi_addr), 
         .frame_done (frame_done),
-        .busy_in    (w_busy),       // <-- [ĐÃ SỬA]: Thành w_busy
         .result_in  (w_result)
     );
 
@@ -153,7 +152,6 @@ module top (
         .thresh_val   (thresh_val), 
         .result       (w_result), 
         .done         (done),
-        .busy         (w_busy)      // <-- [ĐÃ SỬA]: Thành w_busy
     );
    
     

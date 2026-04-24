@@ -16,10 +16,9 @@ module control_fsm (
     output reg [4:0] pad_x, pad_y, in_ch,
     output reg valid_in, acc_clr, is_acc_done,
     output wire [15:0] thresh_val,
-    output reg result, done,   
-    output wire busy      
+    output reg result, done,      
 );
-    assign busy = (state != IDLE);
+    
 
     // =========================================================================
     // KHAI BÁO BIẾN TRẠNG THÁI (ĐÃ ĐỔI TÊN RÕ RÀNG VÀ NGẮN GỌN)
@@ -510,4 +509,5 @@ CONV2_CALC: begin
             endcase
         end
     end
+
 endmodule
