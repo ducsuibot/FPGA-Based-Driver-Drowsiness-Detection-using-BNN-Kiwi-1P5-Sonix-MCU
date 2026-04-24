@@ -1,30 +1,27 @@
-`timescale 1ns / 1ps
-
 module spi_slave #(
-    // Kích thước ảnh: 24x24 pixel nhị phân (1-bit/pixel) = 576 bits = 72 bytes
     parameter TOTAL_BYTES = 7'd72 
 )(
-    input  wire       clk,          // Xung nhịp hệ thống FPGA (rất nhanh, ví dụ 50MHz)
-    input  wire       rst_n,        // Reset tích cực mức thấp
+    input  wire       clk,          
+    input  wire       rst_n,        
     
-    // Giao tiếp SPI từ MCU (Slave Mode)
-    input  wire       spi_clk,      // Xung SPI từ MCU (chậm hơn clk hệ thống)
-    input  wire       spi_cs,       // Chip Select từ MCU (Tích cực mức thấp)
-    input  wire       spi_mosi,     // Đường truyền dữ liệu ảnh từ MCU
+    // Giao tiếp SPI từ MCU
+    input  wire       spi_clk,      
+    input  wire       spi_cs,       
+    input  wire       spi_mosi,     
+    output wire       spi_miso,     // <--- THÊM CHÂN MISO
     
-    // Giao tiếp với RAM Đệm nội bộ
-    output reg        rx_valid,     // Cờ báo: Đã nhận đủ 1 Byte (8-bit)
-    output reg  [7:0] rx_data,      // Dữ liệu 1 Byte vừa nhận
-    output reg  [6:0] rx_addr,      // Địa chỉ ghi vào RAM (0 -> 71)
-    
-    // Tín hiệu trạng thái FSM
-    output reg        frame_done    // Cờ báo: Đã nhận xong toàn bộ 1 khung ảnh
+    // Giao tiếp với RAM
+    output reg        rx_valid,     
+    output reg  [7:0] rx_data,      
+    output reg  [6:0] rx_addr,      
+    output reg        frame_done,
+
+    // Giao tiếp với FSM
+    input  wire       busy_in,      // <--- THÊM: Đọc cờ BUSY từ FSM
+    input  wire       result_in     // <--- THÊM: Đọc cờ RESULT từ FSM
 );
 
-    // =========================================================================
-    // 1. MẠCH ĐỒNG BỘ HÓA (CDC - CLOCK DOMAIN CROSSING)
-    // Chuyển tín hiệu từ Clock MCU sang Clock FPGA để chống nhiễu Metastability
-    // =========================================================================
+    // --- 1. MẠCH ĐỒNG BỘ CDC ---
     reg [2:0] spi_clk_sync;
     reg [2:0] spi_cs_sync;
     reg [1:0] mosi_sync;
@@ -32,27 +29,45 @@ module spi_slave #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             spi_clk_sync <= 3'b000;
-            spi_cs_sync  <= 3'b111; // CS mặc định ở mức cao (Inactive)
+            spi_cs_sync  <= 3'b111; 
             mosi_sync    <= 2'b00;
         end else begin
-            // Dịch bit qua các Flip-Flop để đồng bộ hóa
             spi_clk_sync <= {spi_clk_sync[1:0], spi_clk};
             spi_cs_sync  <= {spi_cs_sync[1:0],  spi_cs};
             mosi_sync    <= {mosi_sync[0],      spi_mosi};
         end
     end
 
-    // Phát hiện sườn (Edge Detection) dựa trên các tín hiệu đã đồng bộ
-    wire spi_clk_rise  = (spi_clk_sync[2:1] == 2'b01); // Sườn dương SPI Clock
-    wire spi_cs_fall   = (spi_cs_sync[2:1]  == 2'b10); // Sườn âm SPI CS (Bắt đầu)
-    wire spi_cs_rise   = (spi_cs_sync[2:1]  == 2'b01); // Sườn dương SPI CS (Kết thúc)
-    wire spi_cs_active = ~spi_cs_sync[1];              // Trạng thái CS đang thấp
+    wire spi_clk_rise  = (spi_clk_sync[2:1] == 2'b01); // Sườn dương
+    wire spi_clk_fall  = (spi_clk_sync[2:1] == 2'b10); // <--- THÊM: Sườn âm để dịch MISO
+    wire spi_cs_fall   = (spi_cs_sync[2:1]  == 2'b10); 
+    wire spi_cs_rise   = (spi_cs_sync[2:1]  == 2'b01); 
+    wire spi_cs_active = ~spi_cs_sync[1]; 
 
-    // =========================================================================
-    // 2. LOGIC NHẬN DỮ LIỆU (SHIFT REGISTER & COUNTERS)
-    // =========================================================================
-    reg [2:0] bit_cnt;   // Đếm số bit trong 1 Byte (0 -> 7)
-    reg [7:0] shift_reg; // Thanh ghi dịch
+    // --- 2. LOGIC MISO (TRUYỀN VỀ MCU) ---
+    reg [7:0] tx_shift_reg;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            tx_shift_reg <= 8'd0;
+        end else begin
+            if (spi_cs_fall) begin
+                // Ngay khi MCU kéo CS xuống, gói Trạng Thái vào thanh ghi
+                // Byte = {BUSY, 0, 0, 0, 0, 0, 0, RESULT}
+                tx_shift_reg <= {busy_in, 6'b000000, result_in};
+            end else if (spi_cs_active && spi_clk_fall) begin
+                // Dịch bit ra MISO ở sườn âm SPI Clock (Mode 0)
+                tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+            end
+        end
+    end
+    
+    // Gắn trở kháng cao (High-Z) cho MISO khi không giao tiếp để bảo vệ chip
+    assign spi_miso = spi_cs_active ? tx_shift_reg[7] : 1'bz;
+
+    // --- 3. LOGIC MOSI (NHẬN TỪ MCU - CÓ KHÓA BẢO VỆ) ---
+    reg [2:0] bit_cnt;
+    reg [7:0] shift_reg;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -63,18 +78,16 @@ module spi_slave #(
             rx_addr    <= 7'd0;
             frame_done <= 1'b0;
         end else begin
-            // Mặc định các xung điều khiển chỉ tồn tại trong 1 chu kỳ clk
             rx_valid   <= 1'b0;
             frame_done <= 1'b0;
 
-            // KHI MCU KÉO CS XUỐNG BẮT ĐẦU GỬI ẢNH
             if (spi_cs_fall) begin
                 bit_cnt <= 3'd0;
-                rx_addr <= 7'd0;  // Reset địa chỉ RAM về 0 cho khung ảnh mới
+                rx_addr <= 7'd0;  // Bất cứ khi nào CS rớt xuống, reset địa chỉ
             end
             
-            // TRONG QUÁ TRÌNH MCU ĐANG GỬI DỮ LIỆU
-            else if (spi_cs_active) begin
+            // CHỈ NHẬN DỮ LIỆU KHI FPGA KHÔNG BẬN (!busy_in)
+            else if (spi_cs_active && !busy_in) begin
                 if (rx_valid) begin
                     rx_addr <= rx_addr + 1'b1;
                 end
@@ -90,15 +103,11 @@ module spi_slave #(
                 end
             end
             
-            // KHI MCU KÉO CS LÊN KẾT THÚC GỬI ẢNH (ĐÃ FIX LỖI LOGIC)
             else if (spi_cs_rise) begin
-                // Gộp chung điều kiện: Đảm bảo bắt được khung hình nếu địa chỉ nhảy đến 71 hoặc 72
-                // (Bù trừ độ trễ của các Flip-Flop đồng bộ)
                 if (rx_addr >= TOTAL_BYTES - 1) begin 
                     frame_done <= 1'b1;
                 end
             end
         end
     end
-
 endmodule

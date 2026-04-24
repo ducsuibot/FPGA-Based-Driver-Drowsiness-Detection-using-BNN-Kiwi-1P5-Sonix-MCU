@@ -6,9 +6,16 @@ module top (
     input  wire spi_img_clk, 
     input  wire spi_img_cs, 
     input  wire spi_img_mosi,
-    output wire result, 
+    output wire spi_miso,
+    output wire result,      // <-- Chân nối ra ngoài (VD: LED)
     output wire done         
 );
+
+    wire w_busy, w_result;
+    
+    // [THÊM MỚI]: Nối tín hiệu kết quả từ bên trong chip ra ngoài chân vật lý
+    assign result = w_result;
+
 
     // =========================================================================
     // KHAI BÁO DÂY KẾT NỐI (WIRES)
@@ -48,16 +55,19 @@ module top (
     // =========================================================================
     // 1. GIAO TIẾP SPI
     // =========================================================================
-    spi_slave u_spi (
+   spi_slave u_spi (
         .clk        (clk), 
         .rst_n      (rst_n), 
         .spi_clk    (spi_img_clk), 
         .spi_cs     (spi_img_cs), 
         .spi_mosi   (spi_img_mosi),
+        .spi_miso   (spi_miso),
         .rx_valid   (spi_valid), 
         .rx_data    (spi_data), 
         .rx_addr    (spi_addr), 
-        .frame_done (frame_done)
+        .frame_done (frame_done),
+        .busy_in    (w_busy),       // <-- [ĐÃ SỬA]: Thành w_busy
+        .result_in  (w_result)
     );
 
     // =========================================================================
@@ -141,8 +151,10 @@ module top (
         .is_fc        (is_fc), 
         .is_img_read  (is_img_read),
         .thresh_val   (thresh_val), 
-        .result       (result), 
-        .done         (done)
+        .result       (w_result), 
+        .done         (done),
+        .busy         (w_busy)      // <-- [ĐÃ SỬA]: Thành w_busy
     );
+   
     
 endmodule
