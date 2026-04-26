@@ -1,0 +1,106 @@
+
+000000000000000000000000
+000000000000000000000000
+000000000000000000000000
+000000000000000000000000
+111000000000000000000000
+111000000000000000000000
+111000000000000000000000
+111110000000000000000000
+111111000000000000000000
+111111111111111000000000
+111111111111111111110000
+111111111111111111111000
+111111100000111111111100
+111111100000000111111100
+111111100000000001111100
+111111110000000001111110
+111111110000100001111111
+111111111111111111111111
+111111111111111111111111
+111111111111111111111111
+111111111111111111111111
+111111111111111111111111
+111111111111111111111111
+111111111111111111111111
+
+
+# ==================================================
+#  DA NHAN CO FRAME_DONE! KIEM TRA NOI DUNG BRAM
+# ==================================================
+# BRAM_Addr [ 0] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 1] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 2] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 3] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 4] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 5] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 6] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 7] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 8] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [ 9] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [10] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [11] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [12] | Du lieu luu: 11100000 (Hex: e0) | Byte goc mcu: 11100000
+# BRAM_Addr [13] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [14] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [15] | Du lieu luu: 11100000 (Hex: e0) | Byte goc mcu: 11100000
+# BRAM_Addr [16] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [17] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [18] | Du lieu luu: 11100000 (Hex: e0) | Byte goc mcu: 11100000
+# BRAM_Addr [19] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [20] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [21] | Du lieu luu: 11111000 (Hex: f8) | Byte goc mcu: 11111000
+# BRAM_Addr [22] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [23] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [24] | Du lieu luu: 11111100 (Hex: fc) | Byte goc mcu: 11111100
+# BRAM_Addr [25] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [26] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [27] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [28] | Du lieu luu: 11111110 (Hex: fe) | Byte goc mcu: 11111110
+# BRAM_Addr [29] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [30] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [31] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [32] | Du lieu luu: 11110000 (Hex: f0) | Byte goc mcu: 11110000
+# BRAM_Addr [33] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [34] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [35] | Du lieu luu: 11111000 (Hex: f8) | Byte goc mcu: 11111000
+# BRAM_Addr [36] | Du lieu luu: 11111110 (Hex: fe) | Byte goc mcu: 11111110
+# BRAM_Addr [37] | Du lieu luu: 00001111 (Hex: 0f) | Byte goc mcu: 00001111
+# BRAM_Addr [38] | Du lieu luu: 11111100 (Hex: fc) | Byte goc mcu: 11111100
+# BRAM_Addr [39] | Du lieu luu: 11111110 (Hex: fe) | Byte goc mcu: 11111110
+# BRAM_Addr [40] | Du lieu luu: 00000001 (Hex: 01) | Byte goc mcu: 00000001
+# BRAM_Addr [41] | Du lieu luu: 11111100 (Hex: fc) | Byte goc mcu: 11111100
+# BRAM_Addr [42] | Du lieu luu: 11111110 (Hex: fe) | Byte goc mcu: 11111110
+# BRAM_Addr [43] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [44] | Du lieu luu: 01111100 (Hex: 7c) | Byte goc mcu: 01111100
+# BRAM_Addr [45] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [46] | Du lieu luu: 00000000 (Hex: 00) | Byte goc mcu: 00000000
+# BRAM_Addr [47] | Du lieu luu: 01111110 (Hex: 7e) | Byte goc mcu: 01111110
+# BRAM_Addr [48] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [49] | Du lieu luu: 00001000 (Hex: 08) | Byte goc mcu: 00001000
+# BRAM_Addr [50] | Du lieu luu: 01111111 (Hex: 7f) | Byte goc mcu: 01111111
+# BRAM_Addr [51] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [52] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [53] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [54] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [55] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [56] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [57] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [58] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [59] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [60] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [61] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [62] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [63] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [64] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [65] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [66] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [67] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [68] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [69] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [70] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# BRAM_Addr [71] | Du lieu luu: 11111111 (Hex: ff) | Byte goc mcu: 11111111
+# 
+# ==================================================
+#  HOAN TAT TEST KIEM TRA BRAM!
+# ==================================================

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPI Slave Waveform - BNN Accelerator</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/skins/default.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.1.0/wavedrom.min.js" type="text/javascript"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow-x: auto; /* Tạo thanh cuộn nếu màn hình nhỏ, tránh tràn khung trắng */
+        }
+        h2 { color: #2c3e50; font-size: 18px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+    </style>
+</head>
+
+<body onload="WaveDrom.ProcessAll()">
+
+    <h1 style="text-align: center; color: #34495e;">Giản đồ thời gian giao thức SPI Slave (Đã Fix Timing)</h1>
+
+    <div class="card">
+        <h2>1. Bắt đầu khung truyền và Chốt Byte đầu tiên (Address = 0)</h2>
+        <p><i>Mô tả: MCU kéo CS xuống thấp, truyền lần lượt 8 bit (MSB First). Trong lúc đọc bit D0, <b>bit_cnt</b> mang giá trị 7. Khi đủ 8 bit, FPGA bật cờ <b>rx_valid</b>, chốt dữ liệu, reset <b>bit_cnt</b> về 0 và tự động tăng <b>rx_addr</b> ở nhịp tiếp theo.</i></p>
+        
+        <script type="WaveDrom">
+        {
+          "config": { "hscale": 2 },
+          "signal": [
+            {"name": "spi_cs",   "wave": "10..........1.."},
+            {"name": "spi_clk",  "wave": "0.pppppppp0...."},
+            {"name": "spi_mosi", "wave": "x.44444444x....", "data": ["D7 (MSB)", "D6", "D5", "D4", "D3", "D2", "D1", "D0 (LSB)"]},
+            {},
+            {"name": "bit_cnt",  "wave": "=.=========....", "data": ["0", "0", "1", "2", "3", "4", "5", "6", "7", "0"]},
+            {"name": "rx_valid", "wave": "0.........10..."},
+            {"name": "rx_data",  "wave": "x.........==...", "data": ["Byte D[7:0]", ""]},
+            {"name": "rx_addr",  "wave": "2..........3...", "data": ["0", "1"]}
+          ]
+        }
+        </script>
+    </div>
+
+    <div class="card">
+        <h2>2. Kết thúc khung truyền (Nhận Byte thứ 72)</h2>
+        <p><i>Mô tả: MCU truyền xong byte cuối cùng (tại địa chỉ 71) và kéo CS lên cao. FPGA chốt byte, <b>rx_addr</b> tăng lên 72. Hệ thống phát hiện sườn lên của CS và bật cờ <b>frame_done</b> để kích hoạt FSM.</i></p>
+        
+        <script type="WaveDrom">
+        {
+          "config": { "hscale": 2 },
+          "signal": [
+            {"name": "spi_cs",   "wave": "0.......1......"},
+            {"name": "spi_clk",  "wave": "pppppppp0......"},
+            {"name": "spi_mosi", "wave": "44444444x......", "data": ["D7", "D6", "D5", "D4", "D3", "D2", "D1", "D0"]},
+            {},
+            {"name": "rx_addr",  "wave": "2........3.....", "data": ["71", "72"]},
+            {"name": "rx_valid", "wave": "0.......10....."},
+            {"name": "frame_done","wave":"0.........10..."}
+          ]
+        }
+        </script>
+    </div>
+
+</body>
+</html>

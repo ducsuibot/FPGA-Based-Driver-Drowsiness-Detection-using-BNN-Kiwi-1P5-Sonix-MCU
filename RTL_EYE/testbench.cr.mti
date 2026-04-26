@@ -1,0 +1,113 @@
+/home/hiura/Hiura/RTL_EYE/top.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/top.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_spi_slave.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_spi_slave.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_spi_slave
+
+Top level modules:
+	tb_spi_slave
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_conv1.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_conv1.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_conv1
+
+Top level modules:
+	tb_conv1
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_datapath_core.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_datapath_core.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_datapath_core
+
+Top level modules:
+	tb_datapath_core
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_conv2.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_conv2.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_conv2
+
+Top level modules:
+	tb_conv2
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/spi_slave.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/spi_slave.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module spi_slave
+
+Top level modules:
+	spi_slave
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_bram.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_bram.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_bram
+
+Top level modules:
+	tb_bram
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/datapath_core.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/datapath_core.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module datapath_core
+
+Top level modules:
+	datapath_core
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_fc1.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_fc1.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_fc1
+
+Top level modules:
+	tb_fc1
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_fc2.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_fc2.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_fc2
+
+Top level modules:
+	tb_fc2
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_pool1.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_pool1.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_pool1
+
+Top level modules:
+	tb_pool1
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_pool2.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_pool2.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_pool2
+
+Top level modules:
+	tb_pool2
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/padding_and_buffer.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/padding_and_buffer.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module padding_and_buffer
+
+Top level modules:
+	padding_and_buffer
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/control_fsm.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/control_fsm.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module control_fsm
+
+Top level modules:
+	control_fsm
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_padding_and_buffer.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_padding_and_buffer.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_padding_and_buffer
+
+Top level modules:
+	tb_padding_and_buffer
+
+} {} {}} /home/hiura/Hiura/RTL_EYE/tb_top.v {1 {vlog -work work -vopt -stats=none /home/hiura/Hiura/RTL_EYE/tb_top.v
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module tb_top
+
+Top level modules:
+	tb_top
+
+} {} {}}
